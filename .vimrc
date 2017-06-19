@@ -16,7 +16,7 @@ Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 "VIM NERDTREE SETTING
-autocmd vimenter * NERDTree
+map <C-n> :NERDTreeToggle<CR>
 
 "VIM AIRLINE SETTING
 set laststatus=2
