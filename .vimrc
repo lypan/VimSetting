@@ -7,10 +7,16 @@ let mapleader=","
 
 "VIM PLUGIN MANAGER SETTING
 call plug#begin('~/.vim/plugged')
+Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'bling/vim-airline'
+Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline-themes'
 call plug#end()
+
+"VIM NERDTREE SETTING
+autocmd vimenter * NERDTree
 
 "VIM AIRLINE SETTING
 set laststatus=2
