@@ -1,8 +1,16 @@
 "VIM BASIC SETTING
+"meta data
+set encoding=utf-8
+"display setting
 set number
 set hlsearch
-set encoding=utf-8
+set list
+"set soft tab
+set expandtab
+set tabstop=4
 set shiftwidth=4
+set softtabstop=4
+"key mapping
 let mapleader=","
 
 "VIM PLUGIN MANAGER SETTING
