@@ -22,36 +22,28 @@ endfunction
 
 "VIM PLUGIN MANAGER SETTING
 call plug#begin('~/.vim/plugged')
-Plug 'yggdroot/indentline'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline'
 Plug 'easymotion/vim-easymotion'
-Plug 'jiangmiao/auto-pairs'
-Plug 'kien/ctrlp.vim'
-Plug 'scrooloose/nerdcommenter'
+Plug 'ervandew/supertab'
+Plug 'honza/vim-snippets'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'raimondi/delimitmate'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
+Plug 'sirver/ultisnips'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
+Plug 'valloric/youcompleteme'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'yggdroot/indentline'
 call plug#end()
-
-"NERDCOMMENTER SETTING
-" Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
-" Use compact syntax for prettified multi-line comments
-let g:NERDCompactSexyComs = 1
-" Align line-wise comment delimiters flush left instead of following code indentation
-let g:NERDDefaultAlign = 'left'
-" Set a language to use its alternate delimiters by default
-"let g:NERDAltDelims_java = 1
-" Add your own custom formats or override the defaults
-let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
-" Allow commenting and inverting empty lines (useful when commenting a region)
-let g:NERDCommentEmptyLines = 1
-" Enable trimming of trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitespace = 1
 
 "NERDTREE SETTING
 map <C-n> :NERDTreeToggle<CR>
@@ -81,3 +73,12 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+"ULTISNIPS SETTING
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
