@@ -40,29 +40,28 @@ set synmaxcol   =200       " Only highlight the first 200 columns.
 
 set list                   " Show non-printable characters.
 if has('multi_byte') && &encoding ==# 'utf-8'
-  let &listchars = 'tab:▸ ,extends:❯,precedes:❮,nbsp:±'
+    let &listchars = 'tab:▸ ,extends:❯,precedes:❮,nbsp:±'
 else
-  let &listchars = 'tab:> ,extends:>,precedes:<,nbsp:.'
+    let &listchars = 'tab:> ,extends:>,precedes:<,nbsp:.'
 endif
 
 " The fish shell is not very compatible to other shells and unexpectedly
 " breaks things that use 'shell'.
 if &shell =~# 'fish$'
-  set shell=/bin/bash
+    set shell=/bin/bash
 endif
 
 " Put all temporary files under the same directory.
 " https://github.com/mhinz/vim-galore#handling-backup-swap-undo-and-viminfo-files
 set backup
+set undofile
 set backupdir   =$HOME/.vim/files/backup/
 set backupext   =-vimbackup
 set backupskip  =
 set directory   =$HOME/.vim/files/swap/
 set updatecount =100
-set undofile
 set undodir     =$HOME/.vim/files/undo/
 set viminfo     ='100,n$HOME/.vim/files/info/viminfo
-
 "key mapping
 let mapleader=","
 "macro
@@ -78,10 +77,10 @@ call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline'
 Plug 'easymotion/vim-easymotion'
-" Plug 'ervandew/supertab'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-easy-align'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'scrooloose/syntastic'
@@ -91,7 +90,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
-Plug 'valloric/youCompleteMe', { 'do': './install.py --all' }
 Plug 'vim-airline/vim-airline-themes'
 Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'yggdroot/indentline'
@@ -112,37 +110,35 @@ endfunction
 nnoremap <silent> <C-e> :<C-u>call ToggleErrors()<CR>
 
 "VIM-AIRLINE SETTING
-set laststatus=2
-let g:airline_powerline_fonts=1
-let g:airline#extensions#tabline#enabled=1
+set laststatus                           =2
+let g:airline_powerline_fonts            =1
+let g:airline#extensions#tabline#enabled =1
 
 "SYNTASTIC SETTING
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+set statusline                           +=%#warningmsg#
+set statusline                           +=%{SyntasticStatuslineFlag()}
+set statusline                           +=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_always_populate_loc_list  =1
+let g:syntastic_auto_loc_list             =1
+let g:syntastic_check_on_open             =1
+let g:syntastic_check_on_wq               =0
 
 "ULTISNIPS SETTING
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-
-" make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
+let g:UltiSnipsExpandTrigger       ="<tab>"
+let g:UltiSnipsJumpForwardTrigger  ="<tab>"
+let g:UltiSnipsJumpBackwardTrigger ="<s-tab>"
 
 " If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsEditSplit ="vertical"
 
 "FZF SETTING
-let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -f -g ""'
+let $FZF_DEFAULT_COMMAND ='ag --hidden --ignore .git -f -g ""'
 
-"YOUCOMPLETEME SETTING
-let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
+"EASY-ALIGN SETTING
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
 
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
