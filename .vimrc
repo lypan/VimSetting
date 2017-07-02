@@ -76,6 +76,7 @@ endfunction
 call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline'
+Plug 'crusoexia/vim-monokai'
 Plug 'easymotion/vim-easymotion'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -139,6 +140,10 @@ let $FZF_DEFAULT_COMMAND ='ag --hidden --ignore .git -f -g ""'
 "EASY-ALIGN SETTING
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
-
+ 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+"MONOKAI SETTING
+colorscheme monokai
+set t_Co=256
