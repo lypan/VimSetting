@@ -82,6 +82,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'scrooloose/syntastic'
@@ -127,7 +128,7 @@ let g:syntastic_check_on_open             =1
 let g:syntastic_check_on_wq               =0
 
 "ULTISNIPS SETTING
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+"Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger       ="<tab>"
 let g:UltiSnipsJumpForwardTrigger  ="<tab>"
 let g:UltiSnipsJumpBackwardTrigger ="<s-tab>"
@@ -139,12 +140,17 @@ let g:UltiSnipsEditSplit ="vertical"
 let $FZF_DEFAULT_COMMAND ='ag --hidden --ignore .git -f -g ""'
 
 "EASY-ALIGN SETTING
-" Start interactive EasyAlign in visual mode (e.g. vipga)
+"Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
  
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+"Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
 "MONOKAI SETTING
 colorscheme monokai
 set t_Co=256
+"NUMBER TOGGLE
+set number relativenumber
+set diffopt=filler,context:0
+"CRONTAB 
+autocmd filetype crontab setlocal nobackup nowritebackup
