@@ -75,57 +75,44 @@ endfunction
 "VIM PLUGIN MANAGER SETTING
 call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
-Plug 'bling/vim-airline'
 Plug 'crusoexia/vim-monokai'
 Plug 'easymotion/vim-easymotion'
+Plug 'ervandew/supertab'
+Plug 'itchyny/lightline.vim'
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'jiangmiao/auto-pairs'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
-Plug 'jeffkreeftmeijer/vim-numbertoggle'
+Plug 'majutsushi/tagbar'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'scrooloose/syntastic'
+Plug 'scrooloose/nerdtree'
 Plug 'sirver/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'w0rp/ale'
 Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'yggdroot/indentline'
 call plug#end()
 
 "NERDTREE SETTING
-map <C-n> :NERDTreeToggle<CR>
-
-"SYNTASTIC SETTING
-function! ToggleErrors()
-    if empty(filter(tabpagebuflist(), 'getbufvar(v:val, "&buftype") is# "quickfix"'))
-        " No location/quickfix list shown, open syntastic error location panel
-        Errors
-    else
-        lclose
-    endif
-endfunction
-nnoremap <silent> <C-e> :<C-u>call ToggleErrors()<CR>
-
-"VIM-AIRLINE SETTING
-set laststatus                           =2
-let g:airline_powerline_fonts            =1
-let g:airline#extensions#tabline#enabled =1
-
-"SYNTASTIC SETTING
-set statusline                           +=%#warningmsg#
-set statusline                           +=%{SyntasticStatuslineFlag()}
-set statusline                           +=%*
-
-let g:syntastic_always_populate_loc_list  =1
-let g:syntastic_auto_loc_list             =1
-let g:syntastic_check_on_open             =1
-let g:syntastic_check_on_wq               =0
+map <leader>n :NERDTreeToggle<CR>
+let NERDTreeShowBookmarks=1
+let NERDTreeShowLineNumbers=1
+let NERDTreeAutoCenter=1
+"vim starts up if no files were specified
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"vim starts up on opening a directory
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+"close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 "ULTISNIPS SETTING
 "Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
@@ -138,7 +125,8 @@ let g:UltiSnipsEditSplit ="vertical"
 
 "FZF SETTING
 let $FZF_DEFAULT_COMMAND ='ag --hidden --ignore .git -f -g ""'
-
+nnoremap <silent> <Leader>f :Files<CR>
+nnoremap <silent> <Leader>b :Buffers<CR>
 "EASY-ALIGN SETTING
 "Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
@@ -154,3 +142,13 @@ set number relativenumber
 set diffopt=filler,context:0
 "CRONTAB 
 autocmd filetype crontab setlocal nobackup nowritebackup
+"LIGHTLINE
+set noshowmode
+"ALE
+" Enable completion where available.
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+let g:ale_completion_enabled = 1
+"TAGBAR
+nmap <Leader>t :TagbarToggle<CR>
+
